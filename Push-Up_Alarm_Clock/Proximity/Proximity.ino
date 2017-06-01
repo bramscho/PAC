@@ -1,3 +1,7 @@
+//power from digital pin
+//MUST CONNECT THE ARDUINO'S GROUND TO THE SNAP CIRCUITS GROUND
+
+
 #define CUSTOM_SETTINGS
 #define INCLUDE_CLOCK_SHIELD
 #define INCLUDE_PROXIMITY_SENSOR_SHIELD
@@ -9,7 +13,7 @@ int totalPushUps = 0;
 
 int hour, minute, second, day, month, year;
 
-int piezoPin = 13;
+int alarmPin = 13;
 
 boolean startTime = true;
   
@@ -19,7 +23,7 @@ void setup() {
   
   Clock.queryDateAndTime();
 
-  pinMode(piezoPin, OUTPUT);
+  pinMode(alarmPin, OUTPUT);
 
   Serial.begin(115200);
   
@@ -41,7 +45,7 @@ void loop() {
           if(startTime == true) {
   
                Serial.print("boolean is true");
-               digitalWrite(piezoPin, HIGH);
+               digitalWrite(alarmPin, HIGH);
                    } //boolean close
                 
                 startTime = false;
@@ -56,7 +60,7 @@ void loop() {
 
           
                     if(totalPushUps == 5) {
-                      digitalWrite(piezoPin, LOW);
+                      digitalWrite(alarmPin, LOW);
 
 
 
