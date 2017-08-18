@@ -39,7 +39,7 @@ void loop() {
   month = Clock.getMonth();
   year = Clock.getYear();
 
-  if(hour == 12 && minute == 6) {
+  if(hour == 11 && minute == 2) {
 
 
           if(startTime == true) {
