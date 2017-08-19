@@ -1,3 +1,5 @@
+//PRESS RESET ON THE ARDUINO
+
 //power from digital pin
 //MUST CONNECT THE ARDUINO'S GROUND TO THE SNAP CIRCUITS GROUND
 
@@ -39,7 +41,7 @@ void loop() {
   month = Clock.getMonth();
   year = Clock.getYear();
 
-  if(hour == 12 && minute == 6) {
+  if(hour == 12 && minute == 15) {
 
 
           if(startTime == true) {
