@@ -41,7 +41,11 @@ void loop() {
   month = Clock.getMonth();
   year = Clock.getYear();
 
+<<<<<<< HEAD:Push-Up_Alarm_Clock/Proximity/Proximity.ino
   if(hour == 12 && minute == 15) {
+=======
+  if(hour == 11 && minute == 2) {
+>>>>>>> 6100fb2e136377682e152479a2a9daef294d90ef:Pull-Up_____Ultrasonic_Sensor/Pull-Up_____Ultrasonic_Sensor.ino
 
 
           if(startTime == true) {
