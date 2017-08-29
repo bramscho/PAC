@@ -11,7 +11,7 @@
 #include <OneSheeld.h>
 
 
-int totalPushUps = 0;
+int totalPullUps = 0;
 
 int hour, minute, second, day, month, year;
 
@@ -41,11 +41,8 @@ void loop() {
   month = Clock.getMonth();
   year = Clock.getYear();
 
-<<<<<<< HEAD:Push-Up_Alarm_Clock/Proximity/Proximity.ino
+
   if(hour == 12 && minute == 15) {
-=======
-  if(hour == 11 && minute == 2) {
->>>>>>> 6100fb2e136377682e152479a2a9daef294d90ef:Pull-Up_____Ultrasonic_Sensor/Pull-Up_____Ultrasonic_Sensor.ino
 
 
           if(startTime == true) {
@@ -59,20 +56,20 @@ void loop() {
 
  
           if(ProximitySensor.getValue() == 0) {
-          totalPushUps++;
-          Serial.println(totalPushUps);
+          totalPullUps++;
+          Serial.println(totalPullUps);
           OneSheeld.delay(1300);
 
 
           
-                    if(totalPushUps == 5) {
+                    if(totalPullUps == 5) {
                       digitalWrite(alarmPin, LOW);
 
 
 
 
                       
-   } //if-statement(totalPushUps)
+   } //if-statement(totalPullUps)
   } //if-statement(proximinity)
  } //if-statement(time) close
 } //void loop close
