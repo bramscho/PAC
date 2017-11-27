@@ -15,7 +15,7 @@ int hour, minute, second, day, month, year;
 int piezoPin = 13; //piezo buzzer
 
 
-//consider renaming the followiung one what they are controlling is determined
+//consider renaming the following one what they are controlling is determined
 int relayChannelOne = 1; //alarm(horn)//coffe maker
 int relayChannelTwo = 2; //coffe maker
 int relayChannelThree = 3; //lamp
@@ -29,22 +29,16 @@ void setup() {
 
   Clock.queryDateAndTime();
 
-  Serial.begin(9600);
+  Serial.begin(115200);
 
   pinMode(piezoPin, OUTPUT);
 
   pinMode(relayChannelOne, OUTPUT);
   pinMode(relayChannelTwo, OUTPUT);
   pinMode(relayChannelThree, OUTPUT);
-
-  digitalWrite(relayChannelOne, LOW);
-  digitalWrite(relayChannelTwo, LOW);
-  digitalWrite(relayChannelThree, LOW);
-
-  digitalWrite(piezoPin, HIGH);
-  delay(10000);
-  digitalWrite(piezoPin, LOW);
-
+delay(250);
+Serial.print("setup is complete");
+delay(250);
 }
 
 void loop() {
@@ -57,10 +51,9 @@ void loop() {
   month = Clock.getMonth();
   year = Clock.getYear();
 
-  if (hour == 11 && minute == 2) {
+  if (hour == 16 && minute == 47) {
 
-
-    if (startTime == true) {
+    if (startTime  == true) {
 
       Serial.print("boolean is true ");
       digitalWrite(piezoPin, HIGH);
@@ -74,22 +67,23 @@ void loop() {
 
 
 
-    if (ProximitySensor.getValue() == 0) {
-      totalPushUps++;
-      Serial.println(totalPushUps);
-      OneSheeld.delay(1300);
+         if (ProximitySensor.getValue() == 1) {
+            totalPushUps++;
+           Serial.println(totalPushUps);
+
+
+                     if (totalPushUps == 5) {
+                        digitalWrite(piezoPin, LOW);
+                        Serial.println("5 pushups done");
 
 
 
-      if (totalPushUps == 5) {
-        digitalWrite(piezoPin, LOW);
 
-
-
-
-      } //if-statement(totalPushUps)
-    } //if-statement(proximinity)
+                              } //if-statement(totalPushUps)
+         } //if-statement(proximinity)
   } //if-statement(time) close
-} //void loop close
+      OneSheeld.delay(5000);
+            delay(5000);
 
+} //void loop close
 
