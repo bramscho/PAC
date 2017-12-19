@@ -16,7 +16,7 @@ int relayChannelOne = 4; //alarm(horn)
 int relayChannelTwo = 2; //coffee maker
 int relayChannelThree = 3; //lamp
 
-
+boolean startTime = true;
 bool flag = false;
 
 void setup() {
@@ -30,7 +30,7 @@ void setup() {
   pinMode(relayChannelTwo, OUTPUT);
   pinMode(relayChannelThree, OUTPUT);
 
-
+boolean startTime = true;
 
 }
 
@@ -39,7 +39,7 @@ void loop() {
 hour = Clock.getHours();
 minute = Clock.getMinutes();
 
-    if (hour == 23 && minute == 08) {
+    if (hour == 23 && minute == 15) {
 
 
 
@@ -54,9 +54,9 @@ minute = Clock.getMinutes();
     if (totalPushUps == 6) {
 
 
-      Terminal.println("5 Pushups done");
-      OneSheeld.delay(1000);
-      totalPushUps = 0;
+        Terminal.println("5 Pushups done");
+        digitalWrite(relayChannelOne, LOW);
+        OneSheeld.delay(1000);
 
     } //if-statement(totalPushUps)
 
@@ -73,5 +73,4 @@ minute = Clock.getMinutes();
 
 
 } //void loop
-
 
