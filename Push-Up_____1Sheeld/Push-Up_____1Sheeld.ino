@@ -24,7 +24,7 @@ int relayChannelThree = 3; //lamp
 
 boolean startTime = true;
 
-int proximityValue = ProximitySensor.getValue();
+
 void setup() {
 
   OneSheeld.begin();
@@ -46,7 +46,7 @@ void setup() {
 void loop() {
 
 
-    if (proximityValue == 1) {
+    if (ProximitySensor.getValue() == 1) {
       ++totalPushUps;
       Serial.println(totalPushUps);
 
@@ -60,6 +60,7 @@ void loop() {
 
       } //if-statement(totalPushUps)
     } //if-statement(proximinity)
-  } //if-statement(time) close
+    OneSheeld.delay(5---)
+  } //void loop
 
 
