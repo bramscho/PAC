@@ -1,29 +1,23 @@
- //power from digital pin
 //MUST CONNECT THE ARDUINO'S GROUND TO THE SNAP CIRCUITS GROUND
-//once the things connected to the 8-channel relay areactivated the arduino must be restarted for it to work again
+//once the things connected to the 8-channel relay are activated the Arduino must be restarted for it to work again
 //  OneSheeld.delay(5000);
 
 #define CUSTOM_SETTINGS
 #define INCLUDE_CLOCK_SHIELD
 #define INCLUDE_PROXIMITY_SENSOR_SHIELD
+#define INCLUDE_TERMINAL_SHIELD
 #include <OneSheeld.h>
-
 
 int totalPushUps = 0;
 
 int hour, minute, second, day, month, year;
 
-int piezoPin = 13; //piezo buzzer
-
-
-//consider renaming the following one what they are controlling is determined
-int relayChannelOne = 1; //alarm(horn)//coffe maker
-int relayChannelTwo = 2; //coffe maker
+int relayChannelOne = 4; //alarm(horn)
+int relayChannelTwo = 2; //coffee maker
 int relayChannelThree = 3; //lamp
 
 
-boolean startTime = true;
-
+bool flag = false;
 
 void setup() {
 
@@ -31,36 +25,52 @@ void setup() {
 
   Clock.queryDateAndTime();
 
-  Serial.begin(115200);
-
-  pinMode(piezoPin, OUTPUT);
 
   pinMode(relayChannelOne, OUTPUT);
   pinMode(relayChannelTwo, OUTPUT);
   pinMode(relayChannelThree, OUTPUT);
-  delay(250);
-  Serial.print("setup is complete");
-  delay(250);
+
+
+
 }
 
 void loop() {
 
+hour = Clock.getHours();
+minute = Clock.getMinutes();
 
-    if (ProximitySensor.getValue() == 1) {
-      ++totalPushUps;
-      Serial.println(totalPushUps);
-
-
-      if (totalPushUps == 5) {
-        digitalWrite(piezoPin, LOW);
-        Serial.println("5 pushups done");
+    if (hour == 23 && minute == 08) {
 
 
 
 
-      } //if-statement(totalPushUps)
-    } //if-statement(proximinity)
-    OneSheeld.delay(5---)
-  } //void loop
 
+  if (ProximitySensor.getValue() == 0 && flag == false ) {
+
+    flag = true;
+    totalPushUps++;
+    Terminal.println(totalPushUps);
+
+    if (totalPushUps == 6) {
+
+
+      Terminal.println("5 Pushups done");
+      OneSheeld.delay(1000);
+      totalPushUps = 0;
+
+    } //if-statement(totalPushUps)
+
+  } //if-statement(proximinity)
+
+  else if(ProximitySensor.getValue() > 0) {
+
+    flag = false;
+
+  }
+
+                   }
+
+
+
+} //void loop
 
