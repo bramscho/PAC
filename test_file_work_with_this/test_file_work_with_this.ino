@@ -12,13 +12,13 @@ int totalPushUps = 0;
 
 int hour, minute, second, day, month, year;
 
-int relayChannelOne = 4; //alarm(horn)
-int relayChannelTwo = 2; //coffee maker
+int relayChannelOne = 13; //alarm(horn)
+int relayChannelTwo = 12; //coffee maker
 int relayChannelThree = 3; //lamp
 
 boolean startTime = true;
 bool flag = false;
-
+bool test = false;
 void setup() {
 
   OneSheeld.begin();
@@ -30,7 +30,6 @@ void setup() {
   pinMode(relayChannelTwo, OUTPUT);
   pinMode(relayChannelThree, OUTPUT);
 
-boolean startTime = true;
 
 }
 
@@ -38,12 +37,18 @@ void loop() {
 
 hour = Clock.getHours();
 minute = Clock.getMinutes();
+second = Clock.getSeconds();
 
-    if (hour == 23 && minute == 15) {
+    if (hour == 21 && minute == 8) {
 
+if (test == false) {
+  
 
-
-
+ digitalWrite(relayChannelOne, HIGH);
+  digitalWrite(relayChannelTwo, HIGH);
+  digitalWrite(relayChannelThree, HIGH);
+test = !test;
+}
 
   if (ProximitySensor.getValue() == 0 && flag == false ) {
 
@@ -51,7 +56,7 @@ minute = Clock.getMinutes();
     totalPushUps++;
     Terminal.println(totalPushUps);
 
-    if (totalPushUps == 6) {
+    if (totalPushUps > 5) {
 
 
         Terminal.println("5 Pushups done");
